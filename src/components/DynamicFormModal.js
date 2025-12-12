@@ -38,10 +38,12 @@ function DynamicFormModal({ nodeData, definition, onSave, onClose }) {
                   <input
                     id={field.id}
                     type="text"
-                    value={formValues[field.id] || ""}
+                    value={formValues[field.id] || field.defaultValue || ""}
                     onChange={(e) =>
                       handleInputChange(field.id, e.target.value)
                     }
+                    disabled={field.isReadOnly}
+                    placeholder={field.placeholder}
                   />
                 )}
 

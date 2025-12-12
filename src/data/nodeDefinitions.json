@@ -62,103 +62,194 @@
   ],
   "steps": [
     {
-      "id": "send_message",
-      "label": "Send Message",
-      "description": "Send a message to a channel",
+      "id": "add_user_to_channel",
+      "label": "Add a user to a channel",
+      "description": "Add a user to a channel",
       "fields": [
         {
-          "id": "channel",
-          "label": "Channel",
+          "id": "channelid",
+          "label": "Channel ID",
+          "type": "text"
+        },
+        {
+          "id": "user_source",
+          "label": "User",
           "type": "select",
-          "options": ["general", "random", "announcements"]
+          "options": ["From Trigger", "Manual Input"]
+        },
+        {
+
+          "id": "slack_id",
+          "label": "Slack User ID (if manual)",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "archive_channel",
+      "label": "Archive a channel",
+      "description": "Archive a channel",
+      "fields": [
+        {
+          "id": "channelid",
+          "label": "Channel ID",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "create_private_channel",
+      "label": "Create a private channel",
+      "description": "Create a private channel",
+      "fields": [
+        {
+          "id": "name",
+          "label": "Name",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "create_public_channel",
+      "label": "Create a public channel",
+      "description": "Create a public channel",
+      "fields": [
+        {
+          "id": "name",
+          "label": "Name",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "remove_user_from_channel",
+      "label": "Remove a user from a channel",
+      "description": "Remove a user from a channel",
+      "fields": [
+        {
+          "id": "channelid",
+          "label": "Channel ID",
+          "type": "text"
+        },
+        {
+          "id": "user_source",
+          "label": "User",
+          "type": "select",
+          "options": ["From Trigger", "Manual Input"]
+        },
+        {
+
+          "id": "slack_id",
+          "label": "Slack User ID (if manual)",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "convert_user_id_to_user",
+      "label": "Convert user ID to user",
+      "description": "Convert user ID to user",
+      "fields": [
+        {
+          "id": "user_id",
+          "label": "User ID",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "convert_user_to_user_id",
+      "label": "Convert user to user ID",
+      "description": "Convert user to user ID",
+      "fields": [
+        {
+          "id": "user_id",
+          "label": "User ID",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "add_reaction_to_message",
+      "label": "Add Reaction to Message",
+      "description": "Add emoji reaction to the trigger message",
+      "fields": [
+        {
+          "id": "message",
+          "label": "Message (from trigger)",
+          "type": "text",
+          "defaultValue": "${trigger.message}",
+          "isReadOnly": true
+        },
+        {
+          "id": "emoji",
+          "label": "Emoji name (without colons)",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "remove_reaction_from_message",
+      "label": "Remove Reaction from Message",
+      "description": "Remove emoji reaction from the trigger message",
+      "fields": [
+        {
+          "id": "message",
+          "label": "Message (from trigger)",
+          "type": "text",
+          "defaultValue": "${trigger.message}",
+          "isReadOnly": true
+        },
+        {
+          "id": "emoji",
+          "label": "Emoji name (without colons)",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "reply_to_message_in_thread",
+      "label": "Reply to a message in thread",
+      "description": "Reply to a message in thread",
+      "fields": [
+        {
+          "id": "message_trigger",
+          "label": "Message to reply to (from trigger)",
+          "type": "text",
+          "defaultValue": "${trigger.message}",
+          "isReadOnly": true
         },
         {
           "id": "message",
           "label": "Message",
+          "type": "text"
+        },
+        {
+          "id": "interactive_components",
+          "label": "Interactive components - Enter a JSON array of interactive buttons. You can use the helper on the App Home of Winterflows to help you build this array.",
           "type": "textarea"
         }
       ]
     },
     {
-      "id": "add_member_to_channel",
-      "label": "Add Member to Channel",
-      "description": "Add a user to a Slack channel",
+      "id": "send_message_to_channel",
+      "label": "Send a message to a channel",
+      "description": "Send a message to a channel",
       "fields": [
         {
-          "id": "channel_id",
+          "id": "channelid",
           "label": "Channel ID",
-          "type": "text",
-          "placeholder": "e.g., C123456"
-        },
-        {
-          "id": "user_source",
-          "label": "User Source",
-          "type": "select",
-          "options": ["from_trigger", "manual_input"]
-        },
-        {
-          "id": "slack_id",
-          "label": "Slack User ID (if manual)",
-          "type": "text",
-          "placeholder": "e.g., U123456 or @username"
-        },
-        {
-          "id": "notification_message",
-          "label": "Welcome Message (optional)",
-          "type": "textarea",
-          "placeholder": "Message to send after adding user"
-        }
-      ]
-    },
-    {
-      "id": "send_email",
-      "label": "Send Email",
-      "description": "Send an email notification",
-      "fields": [
-        {
-          "id": "email",
-          "label": "Email Address",
           "type": "text"
         },
         {
-          "id": "subject",
-          "label": "Subject",
+          "id": "message",
+          "label": "Message",
           "type": "text"
         },
         {
-          "id": "body",
-          "label": "Email Body",
+          "id": "interactive_components",
+          "label": "Interactive components - Enter a JSON array of interactive buttons. You can use the helper on the App Home of Winterflows to help you build this array.",
           "type": "textarea"
-        }
-      ]
-    },
-    {
-      "id": "delay",
-      "label": "Wait/Delay",
-      "description": "Pause execution for a specified time",
-      "fields": [
-        {
-          "id": "duration",
-          "label": "Wait Duration (seconds)",
-          "type": "text"
-        }
-      ]
-    },
-    {
-      "id": "http_request",
-      "label": "HTTP Request",
-      "description": "Make an HTTP request",
-      "fields": [
-        {
-          "id": "url",
-          "label": "URL",
-          "type": "text"
-        },
-        {
-          "id": "method",
-          "label": "Method",
-          "type": "select",
-          "options": ["GET", "POST", "PUT", "DELETE"]
         }
       ]
     }
