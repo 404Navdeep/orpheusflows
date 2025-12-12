@@ -10,6 +10,8 @@ app.use(express.json());
 const slack = new WebClient(process.env.SLACK_BOT_TOKEN);
 
 const otpStore = new Map();
+const otpRequestTracker = new Map();
+const ONE_HOUR = 60 * 60 * 1000;
 
 const generateOTP = () => {
   return Math.floor(100000 + Math.random() * 900000).toString();
@@ -23,7 +25,16 @@ app.post("/api/auth/send-otp", async (req, res) => {
       return res.status(400).json({ message: "Slack ID is required" });
     }
 
+    const lastRequest = otpRequestTracker.get(slackId);
+    if (lastRequest && Date.now() - lastRequest < ONE_HOUR) {
+      const timeLeft = Math.ceil((ONE_HOUR - (Date.now() - lastRequest)) / 60000);
+      return res.status(429).json({
+        message: `Please wait ${timeLeft} minutes before requesting another OTP`,
+      });
+    }
+
     const otp = generateOTP();
+    otpRequestTracker.set(slackId, Date.now());
 
     otpStore.set(slackId, {
       otp,
@@ -35,7 +46,7 @@ app.post("/api/auth/send-otp", async (req, res) => {
       
       await slack.chat.postMessage({
         channel: slackId,
-        text: `Your OrpheusFlows login OTP is: *${otp}*\n\nThis code expires in 5 minutes.`,
+        text: `Your Orpheusflows login OTP is: *${otp}*\n\nThis code expires in 5 minutes.`,
       });
 
       res.json({

@@ -1,4 +1,4 @@
-# OrpheusFlows
+# Orpheusflows
 
 A React app with Slack OTP authentication and ReactFlow integration.
 
@@ -12,7 +12,7 @@ A React app with Slack OTP authentication and ReactFlow integration.
 ## Project Structure
 
 ```
-orpheusflows/
+Orpheusflows/
 ├── src/
 │   ├── pages/
 │   │   ├── LoginPage.js      # Slack OTP login UI
