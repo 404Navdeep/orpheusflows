@@ -1,0 +1,135 @@
+{
+  "triggers": [
+    {
+      "id": "link_manual",
+      "label": "Link / Manual",
+      "description": "Workflow link will be dmed to you as soon as you publish the workflow.",
+      "fields": []
+    },
+    {
+      "id": "cron_schedule",
+      "label": "Cron Schedule",
+      "description": "Cron expression (in UTC)",
+      "fields": [
+        {
+          "id": "duration",
+          "label": "Cron expression (in UTC)",
+          "type": "text"
+        } 
+      ]
+    },
+    {
+      "id": "user_join",
+      "label": "User Join Channel",
+      "description": "Triggered when a user joins a channel",
+      "fields": [
+        {
+          "id": "channelid",
+          "label": "Channel ID",
+          "type": "text"
+        } 
+      ]
+    },
+    {
+      "id": "message_sent",
+        "label": "Message Sent",
+        "description": "Triggered when a message is sent to a channel",
+      "fields": [
+        {
+          "id": "channelid",
+          "label": "Channel ID",
+          "type": "text"
+        } 
+      ]
+    },
+    {
+      "id": "reaction_added",
+        "label": "Reaction Added",
+        "description": "Triggered when a reaction is added to a message",
+      "fields": [
+        {
+          "id": "channelid",
+          "label": "Channel ID",
+          "type": "text"
+        },
+        {
+          "id": "emoji",
+          "label": "Emoji that triggers the workflow (without colons)",
+          "type": "text"
+        } 
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "id": "send_message",
+      "label": "Send Message",
+      "description": "Send a message to a channel",
+      "fields": [
+        {
+          "id": "channel",
+          "label": "Channel",
+          "type": "select",
+          "options": ["general", "random", "announcements"]
+        },
+        {
+          "id": "message",
+          "label": "Message",
+          "type": "textarea"
+        }
+      ]
+    },
+    {
+      "id": "send_email",
+      "label": "Send Email",
+      "description": "Send an email notification",
+      "fields": [
+        {
+          "id": "email",
+          "label": "Email Address",
+          "type": "text"
+        },
+        {
+          "id": "subject",
+          "label": "Subject",
+          "type": "text"
+        },
+        {
+          "id": "body",
+          "label": "Email Body",
+          "type": "textarea"
+        }
+      ]
+    },
+    {
+      "id": "delay",
+      "label": "Wait/Delay",
+      "description": "Pause execution for a specified time",
+      "fields": [
+        {
+          "id": "duration",
+          "label": "Wait Duration (seconds)",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "http_request",
+      "label": "HTTP Request",
+      "description": "Make an HTTP request",
+      "fields": [
+        {
+          "id": "url",
+          "label": "URL",
+          "type": "text"
+        },
+        {
+          "id": "method",
+          "label": "Method",
+          "type": "select",
+          "options": ["GET", "POST", "PUT", "DELETE"]
+        }
+      ]
+    }
+  ]
+}

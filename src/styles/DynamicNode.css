@@ -1,0 +1,50 @@
+/* vibe coded by amp */
+
+.dynamic-node {
+  background: rgb(228, 211, 211);
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  padding: 12px;
+  min-width: 150px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s;
+}
+
+.dynamic-node.selected {
+  border-color: #667eea;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  background: #f8f9ff;
+}
+
+.node-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+
+.node-label {
+  font-weight: 600;
+  font-size: 14px;
+  color: #333;
+  text-align: center;
+}
+
+.btn-edit {
+  padding: 6px 12px;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  width: 100%;
+}
+
+.btn-edit:hover {
+  background: #5568d3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(102, 126, 234, 0.2);
+}

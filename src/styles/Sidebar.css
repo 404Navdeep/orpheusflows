@@ -1,0 +1,81 @@
+/* vibe coded by amp */
+
+.sidebar {
+  width: 280px;
+  padding: 20px;
+  background: white;
+  border-right: 1px solid #e0e0e0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sidebar-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #333;
+}
+
+.sidebar-subtitle {
+  margin: 0;
+  font-size: 12px;
+  color: #999;
+}
+
+.node-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.node-item {
+  padding: 12px;
+  background: #f9f9f9;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  cursor: grab;
+  transition: all 0.3s;
+}
+
+.node-item:hover {
+  border-color: #667eea;
+  background: #f0f0ff;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+}
+
+.node-item:active {
+  cursor: grabbing;
+}
+
+.node-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.node-item-label {
+  font-weight: 600;
+  font-size: 13px;
+  color: #333;
+}
+
+.trigger-badge {
+  background: #667eea;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.node-item-description {
+  margin: 0;
+  font-size: 11px;
+  color: #999;
+  line-height: 1.4;
+}
