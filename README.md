@@ -1,70 +1,123 @@
-# Getting Started with Create React App
+# OrpheusFlows
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React app with Slack OTP authentication and ReactFlow integration.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- 🔐 Slack ID + OTP Authentication
+- 👤 User profile with avatar display
+- ⚡ React Flow integration for creating workflows
+- 📱 Responsive design
 
-### `npm start`
+## Project Structure
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```
+orpheusflows/
+├── src/
+│   ├── pages/
+│   │   ├── LoginPage.js      # Slack OTP login UI
+│   │   └── Dashboard.js      # Main dashboard with user info
+│   ├── styles/
+│   │   ├── LoginPage.css
+│   │   └── Dashboard.css
+│   ├── api/
+│   │   └── authApi.js        # API client functions
+│   ├── App.js                # Main app component
+│   └── index.js
+├── backend/
+│   ├── server.js             # Express server with Slack auth
+│   ├── package.json
+│   └── .env.example
+└── README.md
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Setup
 
-### `npm test`
+### Frontend
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Install dependencies:
+```bash
+npm install
+```
 
-### `npm run build`
+2. Start development server:
+```bash
+npm start
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The app will open at `http://localhost:3000`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Backend
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Navigate to backend directory:
+```bash
+cd backend
+```
 
-### `npm run eject`
+2. Install dependencies:
+```bash
+npm install
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+3. Create `.env` file (copy from `.env.example`):
+```bash
+cp .env.example .env
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+4. Add your Slack bot token:
+   - Go to https://api.slack.com/apps
+   - Create new app or select existing
+   - Go to OAuth & Permissions
+   - Copy your Bot User OAuth Token
+   - Add it to `.env` as `SLACK_BOT_TOKEN`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+5. Start the server:
+```bash
+npm run dev  # with nodemon for auto-reload
+# or
+npm start    # production
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Server will run on `http://localhost:5000`
 
-## Learn More
+## Authentication Flow
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. User enters their Slack ID
+2. Click "Send OTP"
+3. Bot sends OTP via Slack DM (expires in 5 minutes)
+4. User enters OTP in the app
+5. App verifies OTP and logs user in
+6. User sees their profile (name + avatar) in header
+7. Button available to create React Flow
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Environment Variables
 
-### Code Splitting
+### Frontend
+- No additional env vars needed (uses backend at http://localhost:5000)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Backend
+- `SLACK_BOT_TOKEN` - Your Slack bot's OAuth token
+- `PORT` - Server port (default: 5000)
+- `NODE_ENV` - Environment (development/production)
 
-### Analyzing the Bundle Size
+## Slack App Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Your Slack app needs these permissions:
+- `users:read` - To get user info
+- `users:read.email` - To get user email (optional)
+- `chat:write` - To send messages
 
-### Making a Progressive Web App
+## Next Steps
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- [ ] Integrate ReactFlow library for workflow editor
+- [ ] Add database for storing flows
+- [ ] Implement flow execution
+- [ ] Add user preferences/settings
+- [ ] Deploy to production
 
-### Advanced Configuration
+## Tech Stack
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- **Frontend**: React 19, CSS3
+- **Backend**: Express.js, @slack/web-api
+- **Auth**: Slack OTP
+- **Future**: ReactFlow for workflow visualization
