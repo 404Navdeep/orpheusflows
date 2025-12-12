@@ -80,6 +80,37 @@
       ]
     },
     {
+      "id": "add_member_to_channel",
+      "label": "Add Member to Channel",
+      "description": "Add a user to a Slack channel",
+      "fields": [
+        {
+          "id": "channel_id",
+          "label": "Channel ID",
+          "type": "text",
+          "placeholder": "e.g., C123456"
+        },
+        {
+          "id": "user_source",
+          "label": "User Source",
+          "type": "select",
+          "options": ["from_trigger", "manual_input"]
+        },
+        {
+          "id": "slack_id",
+          "label": "Slack User ID (if manual)",
+          "type": "text",
+          "placeholder": "e.g., U123456 or @username"
+        },
+        {
+          "id": "notification_message",
+          "label": "Welcome Message (optional)",
+          "type": "textarea",
+          "placeholder": "Message to send after adding user"
+        }
+      ]
+    },
+    {
       "id": "send_email",
       "label": "Send Email",
       "description": "Send an email notification",

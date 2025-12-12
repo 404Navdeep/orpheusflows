@@ -15,7 +15,7 @@ function LoginPage({ onLoginSuccess }) {
 
     try {
       // send OTP
-      const response = await fetch("http://OrphuesOTP.navdeep.hackclub.app/api/auth/send-otp", {
+      const response = await fetch("https://OrphuesOTP.navdeep.hackclub.app/api/auth/send-otp", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -46,7 +46,7 @@ function LoginPage({ onLoginSuccess }) {
 
     try {
       // verify OTP
-      const response = await fetch("http://OrphuesOTP.navdeep.hackclub.app/api/auth/verify-otp", {
+      const response = await fetch("https://OrphuesOTP.navdeep.hackclub.app/api/auth/verify-otp", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
